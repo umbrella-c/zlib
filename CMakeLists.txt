@@ -45,6 +45,10 @@ include_directories (
 
 if (ZLIB_BUILD_STATIC)
     add_library(zlib_static STATIC ${SRCS})
+    install(TARGETS zlib_static
+        ARCHIVE DESTINATION lib
+        LIBRARY DESTINATION lib
+    )
 endif ()
 
 if (ZLIB_BUILD_SHARED)
@@ -55,5 +59,11 @@ if (ZLIB_BUILD_SHARED)
 
     add_library(zlib SHARED ${SHARED_SRCS})
     target_compile_definitions(zlib PUBLIC -DZLIB_DLL)
+    install(TARGETS zlib
+        ARCHIVE DESTINATION lib
+        LIBRARY DESTINATION lib
+        RUNTIME DESTINATION bin
+    )
 endif ()
 
+install(FILES include/zlib.h include/zconf.h DESTINATION include)
