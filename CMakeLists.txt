@@ -18,7 +18,7 @@ macro (add_sources)
     endforeach()
 endmacro()
 
-configure_file(zconf.h.in zconf.h @COPYONLY)
+configure_file(zconf.h.in zconf.h)
 
 add_sources(
     src/adler32.c
@@ -42,8 +42,6 @@ include_directories (
     ${CMAKE_BINARY_DIR}
     include
 )
-
-add_definitions (-DZLIB_INTERNAL)
 
 if (ZLIB_BUILD_STATIC)
     add_library(zlib_static STATIC ${SRCS})

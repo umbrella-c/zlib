@@ -18,6 +18,10 @@
 #  define ZLIB_INTERNAL
 #endif
 
+#if defined(__linux__)
+#include <unistd.h>
+#endif
+
 #include <stdio.h>
 #include "zlib.h"
 #ifdef STDC
