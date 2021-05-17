@@ -66,4 +66,4 @@ if (ZLIB_BUILD_SHARED)
     )
 endif ()
 
-install(FILES include/zlib.h include/zconf.h DESTINATION include)
+install(FILES include/zlib.h ${CMAKE_BINARY_DIR}/zconf.h DESTINATION include)
