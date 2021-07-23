@@ -18,7 +18,7 @@ macro (add_sources)
     endforeach()
 endmacro()
 
-configure_file(zconf.h.in zconf.h)
+configure_file(zconf.h.in ${CMAKE_BINARY_DIR}/zconf.h)
 
 add_sources(
     src/adler32.c
