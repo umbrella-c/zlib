@@ -8,7 +8,7 @@ project:
     compress(1) and in the GIF image format, the compression method currently used in zlib essentially never 
     expands the data. (LZW can double or triple the file size in extreme cases.) zlib's memory footprint is 
     also independent of the input data and can be reduced, if necessary, at some cost in compression. 
-  type: toolchain
+  type: ingredient
   author: Jean-loup Gailly, Mark Adler
   email: zlib@gzip.org
   version: 1.2
@@ -27,7 +27,7 @@ ingredients:
 # There are a number of keywords that can be used in the recipe
 # steps during generate, build, install and package.
 recipes:
-  - name: llvm-projects
+  - name: zlib
     path: /
     toolchain: vali/clang-cc
     steps:
