@@ -1,6 +1,5 @@
-# project information, packaging data
 project: 
-  name: A Massively Spiffy Yet Delicately Unobtrusive Compression Library
+  summary: A Massively Spiffy Yet Delicately Unobtrusive Compression Library
   description: |
     zlib is designed to be a free, general-purpose, legally unencumbered -- that is, not covered by any patents -- 
     lossless data-compression library for use on virtually any computer hardware and operating system. 
@@ -8,10 +7,9 @@ project:
     compress(1) and in the GIF image format, the compression method currently used in zlib essentially never 
     expands the data. (LZW can double or triple the file size in extreme cases.) zlib's memory footprint is 
     also independent of the input data and can be reduced, if necessary, at some cost in compression. 
-  type: ingredient
   author: Jean-loup Gailly, Mark Adler
   email: zlib@gzip.org
-  version: 1.2
+  version: 1.2.11
   license: https://www.zlib.net/zlib_license.html
   homepage: https://www.zlib.net/
 
@@ -20,7 +18,7 @@ ingredients:
   description: Use the clang cross-compiler to build the OS
   channel: devel
 - name: vali/sdk-c
-  description: We need the C SDK to build the library for Vali
+  description: Require the C SDK to build the library for Vali
   channel: devel
   platform: vali
 
@@ -44,3 +42,7 @@ recipes:
     - type: build
       depends: [generate]
       system: make
+
+packs:
+- name: zlib
+  type: ingredient
