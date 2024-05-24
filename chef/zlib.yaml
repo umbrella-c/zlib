@@ -13,20 +13,29 @@ project:
   license: https://www.zlib.net/zlib_license.html
   homepage: https://www.zlib.net/
 
-ingredients:
-- name: vali/clang-cc
-  channel: devel
-  platform: host
-  arch: host
-- name: vali/sdk-c
-  channel: devel
+platforms:
+  - name: vali
+    toolchain: vali/clang-cc=devel
+    architectures: [amd64, i386]
+
+environment:
+  host:
+    packages:
+      - cmake
+      - make
+  build:
+    ingredients:
+      - name: vali/sdk-c
+        channel: devel
+  hooks: 
+    bash: 'tools/depends.sh install-cmake'
 
 # There are a number of keywords that can be used in the recipe
 # steps during generate, build, install and package.
 recipes:
   - name: zlib
     path: /
-    toolchain: vali/clang-cc
+    toolchain: platform
     steps:
     - name: config
       type: generate
@@ -34,18 +43,23 @@ recipes:
       arguments:
         - -G
         - '"Unix Makefiles"'
-        - -DCMAKE_TOOLCHAIN_FILE=${{ PROJECT_PATH }}/chef/Vali.cmake
+        - -DCMAKE_TOOLCHAIN_FILE=$[[ PROJECT_PATH ]]/chef/vali.cmake
       env:
-        CROSS: ${{ TOOLCHAIN_PREFIX }}/usr/local
-        VALI_ARCH: ${{ CHEF_TARGET_ARCHITECTURE }}
-        VALI_SDK_PATH: ${{ INGREDIENTS_PREFIX }}
+        VALICC: $[[ TOOLCHAIN_PREFIX ]]/usr/local
+        VALI_ARCH: $[[ CHEF_TARGET_ARCHITECTURE ]]
+        VALI_SDK_PATH: $[[ BUILD_INGREDIENTS_PREFIX ]]
     - name: build
       type: build
       depends: [config]
       system: make
       env:
-        VALI_SDK_PATH: ${{ INGREDIENTS_PREFIX }}
+        VALI_SDK_PATH: $[[ BUILD_INGREDIENTS_PREFIX ]]
 
 packs:
-- name: zlib
-  type: ingredient
+  - name: zlib
+    type: ingredient
+    ingredient-options:
+      bin-paths: [/bin]
+      include-paths: [/include]
+      lib-paths: [/lib]
+      linker-args: [-lz]
