@@ -27,8 +27,6 @@ environment:
     ingredients:
       - name: vali/sdk-c
         channel: devel
-  hooks: 
-    bash: 'tools/depends.sh install-cmake'
 
 # There are a number of keywords that can be used in the recipe
 # steps during generate, build, install and package.
