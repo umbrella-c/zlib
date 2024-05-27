@@ -51,6 +51,7 @@ recipes:
       depends: [config]
       system: make
       env:
+        VALICC: $[[ TOOLCHAIN_PREFIX ]]/usr/local
         VALI_SDK_PATH: $[[ BUILD_INGREDIENTS_PREFIX ]]
 
 packs:
