@@ -41,7 +41,7 @@ recipes:
       arguments:
         - -G
         - '"Unix Makefiles"'
-        - -DCMAKE_TOOLCHAIN_FILE=$[[ PROJECT_PATH ]]/chef/vali.cmake
+        - -DCMAKE_TOOLCHAIN_FILE=$[[ PROJECT_PATH ]]/cmake/vali.cmake
       env:
         VALICC: $[[ TOOLCHAIN_PREFIX ]]/usr/local
         VALI_ARCH: $[[ CHEF_TARGET_ARCHITECTURE ]]
