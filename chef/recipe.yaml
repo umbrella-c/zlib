@@ -1,4 +1,5 @@
-project: 
+project:
+  name: zlib
   summary: A Massively Spiffy Yet Delicately Unobtrusive Compression Library
   description: |
     zlib is designed to be a free, general-purpose, legally unencumbered -- that is, not covered by any patents -- 
